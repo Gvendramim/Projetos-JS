@@ -1,14 +1,23 @@
-.loader{
-    width: 65px;
-    height: 65px;
+body {
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    height: 100vh; 
+    margin: 0; 
+    background-color: #f0f0f0; 
+}
+
+.loader {
+    width: 85px;
+    height: 85px;
     border: 7px solid #1b18aa;
     border-radius: 50%;
     border-top-color: transparent;
     animation: loading 0.9s linear infinite;
 }
 
-@keyframes loading{
-    to{
+@keyframes loading {
+    to {
         transform: rotate(360deg);
     }
 }
