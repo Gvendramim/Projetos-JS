@@ -1,0 +1,152 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: sans-serif; 
+    background-color: #a5a5a5; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #333;
+    padding: 20px;
+    flex-direction: column;
+  }
+  
+  .app-container {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.199);
+    padding: 30px;
+    width: 100%;
+    max-width: 350px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  h1 {
+    color: #ff4081; 
+    font-size: 2.2em;
+    margin-bottom: 15px;
+    font-weight: 700;
+  }
+  
+  #question-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  #question {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  input[type="number"] {
+    padding: 14px;
+    font-size: 1.4em;
+    border-radius: 10px;
+    border: 2px solid #ff4081;
+    background-color: #fce4ec; 
+    color: #333;
+    width: 100%;
+    max-width: 300px;
+    transition: all 0.3s ease;
+  }
+  
+  input[type="number"]:focus {
+    border-color: #f50057;
+    outline: none;
+    background-color: #ffe0f0; 
+  }
+  
+  button {
+    padding: 15px 25px;
+    font-size: 1.2em;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 100%;
+    max-width: 300px;
+    background-color: #ff4081;
+    color: white;
+    font-weight: bold;
+  }
+  
+  button:hover {
+    background-color: #f50057;
+    transform: scale(1.05); 
+  }
+  
+  #feedback {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #ff1744; 
+  }
+  
+  #level-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  select {
+    padding: 14px;
+    font-size: 1.3em;
+    border-radius: 10px;
+    border: 2px solid #ff4081;
+    background-color: #fce4ec;
+    color: #333;
+    width: 100%;
+    max-width: 300px;
+    transition: all 0.3s ease;
+  }
+  
+  select:focus {
+    border-color: #f50057;
+    outline: none;
+    background-color: #ffe0f0;
+  }
+  
+  #score-container {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #ff4081;
+    margin-top: 20px;
+  }
+  
+  @media (max-width: 768px) {
+    .app-container {
+      padding: 20px;
+      width: 100%;
+      max-width: 90%;
+    }
+  
+    h1 {
+      font-size: 1.8em;
+    }
+  
+    button {
+      padding: 12px 20px;
+      font-size: 1em;
+    }
+  
+    input[type="number"] {
+      font-size: 1.2em;
+    }
+  
+    select {
+      font-size: 1.2em;
+    }
+  }
+  

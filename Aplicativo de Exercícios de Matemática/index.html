@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aplicativo de Matemática Infantil</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-container">
+    <h1>Exercícios de Matemática</h1>
+
+    <div id="question-container">
+      <div id="question"></div>
+      <input type="number" id="answer" placeholder="Sua resposta">
+      <button id="submit-btn" onclick="checkAnswer()">Enviar Resposta</button>
+      <button id="next-btn" style="display: none;" onclick="nextQuestion()">Próxima Pergunta</button>
+    </div>
+
+    <div id="feedback"></div>
+    <div id="score-container">Pontuação: <span id="score">0</span></div>
+
+    <div>
+      <label for="difficulty">Escolha o nível:</label>
+      <select id="difficulty">
+        <option value="easy">Fácil</option>
+        <option value="medium">Médio</option>
+        <option value="hard">Difícil</option>
+      </select>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
