@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editores de Texto e Imagem</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="text-editor">
+      <h1>Editor de Texto</h1>
+      <div class="toolbar">
+        <button id="bold" onclick="formatText('bold')">B</button>
+        <button id="italic" onclick="formatText('italic')">I</button>
+        <button id="underline" onclick="formatText('underline')">U</button>
+        <button id="save-text" onclick="saveText()">Salvar Texto</button>
+      </div>
+      <div class="editor" contenteditable="true">
+        <p>Digite seu texto aqui...</p>
+      </div>
+    </div>
+
+    <div class="image-editor">
+      <h1>Editor de Imagens</h1>
+      <input type="file" id="upload-image" accept="image/*" onchange="loadImage(event)">
+      <canvas id="canvas"></canvas>
+      
+      <div class="controls">
+        <label>Brilho:</label>
+        <input type="range" id="brightness" min="0" max="2" step="0.1" value="1" onchange="adjustImage()">
+        
+        <label>Contraste:</label>
+        <input type="range" id="contrast" min="0" max="2" step="0.1" value="1" onchange="adjustImage()">
+        
+        <label>Saturação:</label>
+        <input type="range" id="saturation" min="0" max="2" step="0.1" value="1" onchange="adjustImage()">
+        
+        <button onclick="applyFilter('grayscale')">Escala de Cinza</button>
+
+        <button id="download-btn">Baixar Imagem</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
