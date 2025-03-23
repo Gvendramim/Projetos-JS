@@ -1,53 +1,43 @@
-const preview = document.getElementById("preview"),
-    styles = document.getElementById("styles"),
-    ranges = document.querySelectorAll(".settings input"),
-    copyButton = document.getElementById("copy-styles");
+const preview = document.getElementById("preview");
+const styles = document.getElementById("styles");
+const copyButton = document.getElementById("copy-styles");
+const ranges = document.querySelectorAll(".settings input");
 
-// Adicionar ouvinte de evento a cada entrada de intervalo
-ranges.forEach((slider) => {
-    slider.addEventListener("input", generateStyles);
-});
 
-// Função para gerar e atualizar estilos
+ranges.forEach((slider) => slider.addEventListener("input", generateStyles));
 function generateStyles() {
-    const xShadow = document.getElementById("x-shadow").value;
-    const yShadow = document.getElementById("y-shadow").value;
-    const blurRadius = document.getElementById("blur-r").value;
-    const spreadRadius = document.getElementById("spread-r").value;
-    const shadowColor = document.getElementById("shadow-color").value;
-    const shadowOpacity = document.getElementById("shadow-opacity").value;
-    const shadowInset = document.getElementById("inset-shadow").checked;
-    const borderRadius = document.getElementById("border-r").value;
+    const getValue = (id) => document.getElementById(id).value;
+    const xShadow = getValue("x-shadow"),
+        yShadow = getValue("y-shadow"),
+        blurRadius = getValue("blur-r"),
+        spreadRadius = getValue("spread-r"),
+        shadowColor = getValue("shadow-color"),
+        shadowOpacity = getValue("shadow-opacity"),
+        borderRadius = getValue("border-r"),
+        shadowInset = document.getElementById("inset-shadow").checked;
 
-    // Cria o valor da propriedade CSS da sombra da caixa
-    const boxShadow = `${shadowInset ? "inset " : ""} ${xShadow}px ${yShadow}px ${blurRadius}px ${spreadRadius}px ${hexToRgba(shadowColor, shadowOpacity)}`;
+    const boxShadow = `${shadowInset ? "inset " : ""}${xShadow}px ${yShadow}px ${blurRadius}px ${spreadRadius}px ${hexToRgba(shadowColor, shadowOpacity)}`;
 
-    // Atualiza os estilos do elemento de visualização
-    preview.style.boxShadow = boxShadow;
-    preview.style.borderRadius = `${borderRadius}px`;
+    Object.assign(preview.style, {
+        boxShadow,
+        borderRadius: `${borderRadius}px`,
+    });
 
-    // Atualizar textarea com estilos gerados
     styles.textContent = `box-shadow: ${boxShadow};\nborder-radius: ${borderRadius}px;`;
-
 }
 
-// Função para converter cor hexadecimal e opacidade para o formato rgba
-function hexToRgba(shadowColor, shadowOpacity) {
-    const r = parseInt(shadowColor.substr(1, 2), 16);
-    const g = parseInt(shadowColor.substr(3, 2), 16);
-    const b = parseInt(shadowColor.substr(5, 2), 16);
-
-    return `rgba(${r}, ${g}, ${b}, ${shadowOpacity})`;
+function hexToRgba(hex, opacity) {
+    const [r, g, b] = hex.match(/\w\w/g).map((c) => parseInt(c, 16));
+    return `rgba(${r}, ${g}, ${b}, ${opacity})`;
 }
 
-// Função para copiar os estilos gerados
 function copyStyles() {
-    styles.select();
-    document.execCommand("copy");
-    copyButton.innerText = "Copiado!";
-    setTimeout(() => {
-        copyButton.innerText = "Copiar estilos";
-    }, 500);
+    navigator.clipboard.writeText(styles.textContent).then(() => {
+        copyButton.innerText = "Copiado!";
+        setTimeout(() => (copyButton.innerText = "Copiar estilos"), 1000);
+    });
 }
+
+copyButton.addEventListener("click", copyStyles);
 
 generateStyles();
