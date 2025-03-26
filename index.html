@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Projetos com JavaScript</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        html,
+        body {
+            font-family: 'Poppins', sans-serif;
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1 {
+            color: #007BFF;
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 80px;
+            text-align: center;
+        }
+
+        .content {
+            flex: 1;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .project {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            width: 220px;
+            text-align: center;
+        }
+
+        .project:hover {
+            transform: scale(1.08);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        a {
+            text-decoration: none;
+            color: #007BFF;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        footer {
+            margin-top: 50px;
+            padding: 20px;
+            background: #007BFF;
+            color: white;
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        footer {
+            padding: 20px;
+            background: #007BFF;
+            color: white;
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        footer a {
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content">
+        <h1>Meus Projetos em JavaScript</h1>
+        <div class="container" id="projects-container"></div>
+    </div>
+
+    <footer>
+        <p>Desenvolvido por <strong>Gabriel Vendramim</strong></p>
+        <p>
+            <a href="https://www.linkedin.com/in/gvendramim/" target="_blank">LinkedIn</a> |
+            <a href="https://github.com/Gvendramim/" target="_blank">GitHub</a>
+        </p>
+    </footer>
+
+    <script>
+        const projects = [
+            { name: "Aplicativo de Exercícios de Matemática", url: "./Aplicativo de Exercícios de Matemática/index.html" },
+            { name: "Biblioteca de Manipulação de Arrays e Objetos", url: "./Biblioteca de Manipulação de Arrays e Objetos/index.html" },
+            { name: "Calculadora", url: "./Calculadora/index.html" },
+            { name: "Clima em Tempo Real", url: "./Clima em Tempo Real/index.html" },
+            { name: "Conversor de Moedas", url: "./Conversor de Moedas/index.html" },
+            { name: "Detector de Velocidade Internet", url: "./Detector de Velocidade Internet/index.html" },
+            { name: "Editor de Texto e Imagens", url: "./Editor de Texto e Imagens/index.html" },
+            { name: "Formulário com Varias Etapas", url: "./Formulário com Varias Etapas/index.html" },
+            { name: "Gerador de Animações", url: "./Gerador de Animações/index.html" },
+            { name: "Gerador de código QR", url: "./Gerador de código QR/index.html" },
+            { name: "Gerador de Senhas", url: "./Gerador de Senhas/index.html" },
+            { name: "Gerador de Sombras", url: "./Gerador de Sombras/index.html" },
+            { name: "Jogo da Velha", url: "./Jogo da Velha/index.html" },
+            { name: "Lâmpada", url: "./Lampada/index.html" },
+            { name: "Loading", url: "./Loading/index.html" },
+            { name: "Quiz Game", url: "./Quiz Game/index.html" },
+            { name: "Relógio", url: "./Relogio/index.html" },
+            { name: "Semáforo", url: "./Semaforo/index.html" },
+            { name: "To-Do List", url: "./To Do List/index.html" },
+        ];
+
+        const container = document.getElementById("projects-container");
+
+        projects.forEach(proj => {
+            const div = document.createElement("div");
+            div.classList.add("project");
+            div.innerHTML = `<a href="${proj.url}" target="_blank">${proj.name}</a>`;
+            container.appendChild(div);
+        });
+    </script>
+</body>
+
+</html>
