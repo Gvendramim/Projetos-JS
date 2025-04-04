@@ -2,10 +2,10 @@
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Meus Projetos com JavaScript</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
     <style>
         html,
         body {
@@ -20,12 +20,34 @@
             color: #007BFF;
             font-size: 2rem;
             font-weight: bold;
-            margin: 80px;
+            margin-top: 60px;
             text-align: center;
         }
 
         .content {
             flex: 1;
+            padding: 20px;
+        }
+
+        .search-box {
+            display: flex;
+            justify-content: center;
+            margin: 20px auto 40px;
+        }
+
+        .search-box input {
+            padding: 10px 15px;
+            width: 80%;
+            max-width: 500px;
+            font-size: 1rem;
+            border: 2px solid #007BFF;
+            border-radius: 10px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .search-box input:focus {
+            border-color: #0056b3;
         }
 
         .container {
@@ -58,16 +80,8 @@
         }
 
         footer {
-            margin-top: 50px;
             padding: 20px;
-            background: #007BFF;
-            color: white;
-            text-align: center;
-            font-size: 1rem;
-        }
-
-        footer {
-            padding: 20px;
+            margin-top: 30px;
             background: #007BFF;
             color: white;
             text-align: center;
@@ -90,6 +104,11 @@
 <body>
     <div class="content">
         <h1>Meus Projetos em JavaScript</h1>
+
+        <div class="search-box">
+            <input type="text" id="search" placeholder="Buscar Projeto..." />
+        </div>
+
         <div class="container" id="projects-container"></div>
     </div>
 
@@ -125,12 +144,26 @@
         ];
 
         const container = document.getElementById("projects-container");
+        const searchInput = document.getElementById("search");
 
-        projects.forEach(proj => {
-            const div = document.createElement("div");
-            div.classList.add("project");
-            div.innerHTML = `<a href="${proj.url}" target="_blank">${proj.name}</a>`;
-            container.appendChild(div);
+        function displayProjects(filteredProjects) {
+            container.innerHTML = '';
+            filteredProjects.forEach(proj => {
+                const div = document.createElement("div");
+                div.classList.add("project");
+                div.innerHTML = `<a href="${proj.url}" target="_blank">${proj.name}</a>`;
+                container.appendChild(div);
+            });
+        }
+
+        displayProjects(projects);
+
+        searchInput.addEventListener("input", (e) => {
+            const query = e.target.value.toLowerCase();
+            const filtered = projects.filter(p =>
+                p.name.toLowerCase().includes(query)
+            );
+            displayProjects(filtered);
         });
     </script>
 </body>
