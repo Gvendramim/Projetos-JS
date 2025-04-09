@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerador de Animações</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <h1>Gerador de Animações</h1>
     <div class="controls">
@@ -20,10 +22,17 @@
         <input type="number" id="duration" value="1000">
 
         <button id="apply-animation">Aplicar Animação</button>
+
+        <button id="copy-animation">Copiar Animação</button>
+
     </div>
 
     <div id="animated-element" class="box">Animação</div>
 
+    
+    <textarea id="animation-code" style="width:40%;height:100px;margin-top:80px;"></textarea>
+
     <script src="animations.js"></script>
 </body>
+
 </html>
