@@ -20,7 +20,7 @@ function getWeather(city) {
     .then(data => displayWeather(data))
     .catch(error => {
       alert('Cidade não encontrada ou ocorreu um erro');
-      console.error(error);
+      console.error(error); 
     });
 }
 
