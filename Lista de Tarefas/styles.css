@@ -1,0 +1,89 @@
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  color: #333;
+}
+
+.todo-container {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 420px;
+}
+.todo-container h1 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  color: #dd0e3b;
+}
+.todo-container input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.3s;
+}
+.todo-container input:focus {
+  border-color: #dd0e3b;
+}
+.todo-container button#addTaskBtn {
+  background-color: #dd0e3b;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+.todo-container button#addTaskBtn:hover {
+  background-color: #c91460;
+}
+.todo-container ul {
+  list-style: none;
+  padding: 0;
+}
+.todo-container ul li {
+  background-color: #f9f9f9;
+  padding: 12px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.3s;
+}
+.todo-container ul li.completed {
+  text-decoration: line-through;
+  color: gray;
+}
+.todo-container ul li button.delete {
+  background-color: #FF6347;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+  padding: 6px 12px;
+  font-size: 0.9rem;
+  margin-left: 10px;
+}
+.todo-container ul li button.delete:hover {
+  background-color: #d9534f;
+}
+
+/*# sourceMappingURL=styles.css.map */

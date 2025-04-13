@@ -1,0 +1,104 @@
+// Variáveis
+$primary-color: #dd0e3b;
+$primary-hover: #c91460;
+$delete-color: #FF6347;
+$delete-hover: #d9534f;
+$bg-color: #f0f0f0;
+$container-bg: #fff;
+$text-color: #333;
+$completed-color: gray;
+
+// Mixins
+@mixin button-style($bg, $hover-bg) {
+  background-color: $bg;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+
+  &:hover {
+    background-color: $hover-bg;
+  }
+}
+
+// Estilos principais
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: $bg-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  color: $text-color;
+}
+
+.todo-container {
+  background-color: $container-bg;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 420px;
+
+  h1 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    color: $primary-color;
+  }
+
+  input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.3s;
+
+    &:focus {
+      border-color: $primary-color;
+    }
+  }
+
+  button#addTaskBtn {
+    @include button-style($primary-color, $primary-hover);
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      background-color: #f9f9f9;
+      padding: 12px;
+      margin-bottom: 10px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.3s;
+
+      &.completed {
+        text-decoration: line-through; 
+        color: $completed-color;
+      }
+
+      button.delete {
+        @include button-style($delete-color, $delete-hover);
+        padding: 6px 12px;
+        font-size: 0.9rem;
+        margin-left: 10px;
+      }
+    }
+  }
+}
