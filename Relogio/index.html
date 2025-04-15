@@ -1,33 +1,132 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
     <title>Relógio Digital</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            padding: 20px;
+        }
+
+        .relogio {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+            padding: 20px 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeIn 1s ease-in-out;
+            max-width: 90vw;
+        }
+
+        .relogio div {
+            text-align: center;
+            color: #fff;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            padding: 25px;
+            flex: 1 1 90px;
+            min-width: 350px;
+            max-width: 500px;
+            transition: transform 0.3s ease;
+        }
+
+        .relogio div:hover {
+            transform: scale(1.05);
+        }
+
+        .relogio span {
+            display: block;
+            font-size: clamp(32px, 7vw, 50px);
+            font-weight: 700;
+            color: #00fff7;
+            text-shadow: 0 0 10px #00fff7;
+            word-break: break-word;
+        }
+
+        .tempo {
+            font-size: clamp(10px, 2.5vw, 14px);
+            font-weight: 300;
+            color: #eee;
+            margin-top: 5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
 </head>
 
 <body>
+
     <div class="relogio">
         <div>
             <span id="horas">00</span>
-            <span class="tempo">Horas</span> 
+            <span class="tempo">Horas</span>
         </div>
-
         <div>
             <span id="minutos">00</span>
             <span class="tempo">Minutos</span>
         </div>
-
         <div>
             <span id="segundos">00</span>
             <span class="tempo">Segundos</span>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        const horas = document.getElementById('horas');
+        const minutos = document.getElementById('minutos');
+        const segundos = document.getElementById('segundos');
+
+        const relogio = setInterval(() => {
+            const dateToday = new Date();
+            let hr = dateToday.getHours();
+            let min = dateToday.getMinutes();
+            let sec = dateToday.getSeconds();
+
+            hr = hr < 10 ? '0' + hr : hr;
+            min = min < 10 ? '0' + min : min;
+            sec = sec < 10 ? '0' + sec : sec;
+
+            horas.textContent = hr;
+            minutos.textContent = min;
+            segundos.textContent = sec;
+        }, 1000);
+    </script>
+
 </body>
 
 </html>
