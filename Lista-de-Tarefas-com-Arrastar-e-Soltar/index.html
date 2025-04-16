@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lista de tarefas com Arrastar e Soltar</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>📋 Lista de Tarefas</h1>
+        <form id="task-form">
+            <input type="text" id="task-input" placeholder="Digite uma tarefa..." required />
+            <button type="submit">Adicionar</button>
+        </form>
+
+        <div class="board">
+            <div class="column" data-status="todo">
+                <h2>A Fazer</h2>
+                <ul class="task-list" id="todo-list"></ul>
+            </div>
+            <div class="column" data-status="doing">
+                <h2>Em Progresso</h2>
+                <ul class="task-list" id="doing-list"></ul>
+            </div>
+            <div class="column" data-status="done">
+                <h2>Concluído</h2>
+                <ul class="task-list" id="done-list"></ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
