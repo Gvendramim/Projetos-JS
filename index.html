@@ -14,13 +14,14 @@
             margin: 0;
             display: flex;
             flex-direction: column;
+            background-color: rgb(214, 214, 214);
         }
 
         h1 {
-            color: #007BFF;
-            font-size: 2rem;
+            color: #4500b3;
+            font-size: 2.8rem;
             font-weight: bold;
-            margin-top: 60px;
+            margin: 20px auto 50px;
             text-align: center;
         }
 
@@ -32,22 +33,22 @@
         .search-box {
             display: flex;
             justify-content: center;
-            margin: 20px auto 40px;
+            margin-bottom: 70px;
         }
 
         .search-box input {
             padding: 10px 15px;
             width: 80%;
-            max-width: 500px;
-            font-size: 1rem;
-            border: 2px solid #007BFF;
+            max-width: 440px;
+            font-size: 1.1rem;
+            border: 2px solid #4500b3;
             border-radius: 10px;
             outline: none;
             transition: border-color 0.3s;
         }
 
         .search-box input:focus {
-            border-color: #0056b3;
+            border-color: #4500b3;
         }
 
         .container {
@@ -60,7 +61,7 @@
         .project {
             background: white;
             padding: 20px;
-            border-radius: 10px;
+            border-radius: 15px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s, box-shadow 0.3s;
             width: 220px;
@@ -74,15 +75,15 @@
 
         a {
             text-decoration: none;
-            color: #007BFF;
+            color: #4500b3;
             font-weight: bold;
             font-size: 1.1rem;
         }
 
         footer {
             padding: 20px;
-            margin-top: 30px;
-            background: #007BFF;
+            margin-top: 80px;
+            background: #4500b3;
             color: white;
             text-align: center;
             font-size: 1rem;
@@ -103,7 +104,7 @@
 
 <body>
     <div class="content">
-        <h1>Meus Projetos em JavaScript</h1>   
+        <h1>Projetos em JavaScript</h1>
 
         <div class="search-box">
             <input type="text" id="search" placeholder="Buscar Projeto..." />
