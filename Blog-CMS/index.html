@@ -1,0 +1,44 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog Pessoal com CMS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div class="container">
+        <h1>📝 Meu Blog CMS</h1>
+
+        <div id="auth">
+            <input type="email" id="email" placeholder="Email" />
+            <input type="password" id="password" placeholder="Senha" />
+            <div class="auth-buttons">
+                <button onclick="login()">Login</button>
+                <button onclick="logout()">Logout</button>
+            </div>
+        </div>
+
+        <div id="editor" class="hidden">
+            <form id="post-form">
+                <input type="text" id="title" placeholder="Título do post" required />
+                <textarea id="content" placeholder="Conteúdo do post"></textarea>
+                <button type="submit">Salvar</button>
+            </form>
+
+            <ul id="post-list"></ul>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
