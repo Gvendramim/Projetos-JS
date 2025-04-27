@@ -16,86 +16,106 @@ const questions = [
   }
 ];
 
+// Sons
+const correctSound = new Audio('sounds/correct.mp3');
+const wrongSound = new Audio('sounds/wrong.mp3');
+const gameoverSound = new Audio('sounds/gameover.mp3');
+
 let currentQuestionIndex = 0;
 let score = 0;
 let timeLeft = 15;
-let timer = null;
+let timer;
+
+const questionEl = document.getElementById('question');
+const answersContainer = document.getElementById('answer-buttons');
+const nextButton = document.getElementById('next-button');
+const restartButton = document.getElementById('restart-button');
+const scoreEl = document.getElementById('score');
+const timeLeftEl = document.getElementById('time-left');
+
+nextButton.addEventListener('click', nextQuestion);
+restartButton.addEventListener('click', restartQuiz);
 
 function startTimer() {
+  clearInterval(timer);
   timeLeft = 15;
-  updateTimerDisplay();
+  updateTimer();
 
   timer = setInterval(() => {
     timeLeft--;
-    updateTimerDisplay();
+    updateTimer();
 
     if (timeLeft === 0) {
       clearInterval(timer);
-      showNextButton();
       disableAnswers();
+      nextButton.style.display = "block";
     }
   }, 1000);
 }
 
-function updateTimerDisplay() {
-  document.getElementById("time-left").textContent = timeLeft;
+function updateTimer() {
+  timeLeftEl.textContent = timeLeft;
 }
 
 function showQuestion() {
-  const questionObj = questions[currentQuestionIndex];
-  const questionElement = document.getElementById("question");
-  const answerButtons = document.querySelectorAll(".answer-btn");
+  resetState();
 
-  questionElement.textContent = questionObj.question;
-  answerButtons.forEach((btn, index) => {
-    btn.textContent = questionObj.answers[index];
-    btn.className = "btn answer-btn";
-    btn.disabled = false;
+  const questionObj = questions[currentQuestionIndex];
+  questionEl.textContent = questionObj.question;
+
+  questionObj.answers.forEach((answer, index) => {
+    const button = document.createElement('button');
+    button.textContent = answer;
+    button.classList.add('btn', 'answer-btn');
+    button.addEventListener('click', () => selectAnswer(index));
+    answersContainer.appendChild(button);
   });
 
-  hideNextButton();
   startTimer();
 }
 
-function selectAnswer(index) {
+function resetState() {
+  clearInterval(timer);
+  nextButton.style.display = 'none';
+  answersContainer.innerHTML = '';
+}
+
+function selectAnswer(selectedIndex) {
   clearInterval(timer);
 
-  const isCorrect = index === questions[currentQuestionIndex].correct;
-  const buttons = document.querySelectorAll(".answer-btn");
+  const correctIndex = questions[currentQuestionIndex].correct;
+  const buttons = document.querySelectorAll('.answer-btn');
 
-  buttons.forEach((btn, idx) => {
-    btn.disabled = true;
-    if (idx === questions[currentQuestionIndex].correct) {
-      btn.classList.add("correct");
-    } else if (idx === index) {
-      btn.classList.add("incorrect");
+  buttons.forEach((button, idx) => {
+    button.disabled = true;
+    if (idx === correctIndex) {
+      button.classList.add('correct');
+    }
+    if (idx === selectedIndex && idx !== correctIndex) {
+      button.classList.add('incorrect');
     }
   });
 
-  if (isCorrect) {
+  if (selectedIndex === correctIndex) {
+    correctSound.play();
     score++;
-    document.getElementById("score").textContent = score;
+    scoreEl.textContent = score;
+  } else {
+    wrongSound.play();
   }
 
-  showNextButton();
+  nextButton.style.display = "block";
 }
 
 function disableAnswers() {
-  document.querySelectorAll(".answer-btn").forEach(button => {
+  document.querySelectorAll('.answer-btn').forEach(button => {
     button.disabled = true;
   });
 }
 
-function showNextButton() {
-  document.getElementById("next-button").style.display = "block";
-}
-
-function hideNextButton() {
-  document.getElementById("next-button").style.display = "none";
-}
-
 function nextQuestion() {
   currentQuestionIndex++;
+
   if (currentQuestionIndex < questions.length) {
     showQuestion();
   } else {
@@ -105,36 +125,20 @@ function nextQuestion() {
 
 function finishQuiz() {
   clearInterval(timer);
+  gameoverSound.play();
 
-  const container = document.getElementById("question-container");
-  container.innerHTML = `
-    <h2>Quiz Finalizado!</h2>
-    <p>Sua pontuação final foi: <strong>${score}</strong></p>
-  `;
-
-  document.getElementById("next-button").style.display = "none";
-  document.getElementById("restart-button").style.display = "block";
+  questionEl.innerHTML = `Quiz Finalizado!<br><br>Sua pontuação foi: <strong>${score}</strong>`;
+  answersContainer.innerHTML = '';
+  nextButton.style.display = "none";
+  restartButton.style.display = "block";
 }
 
 function restartQuiz() {
   currentQuestionIndex = 0;
   score = 0;
-  document.getElementById("score").textContent = score;
-
-  document.getElementById("question-container").innerHTML = `
-    <p id="question" class="question-text"></p>
-    <div id="answer-buttons" class="btn-container">
-      <button class="btn answer-btn" onclick="selectAnswer(0)"></button>
-      <button class="btn answer-btn" onclick="selectAnswer(1)"></button>
-      <button class="btn answer-btn" onclick="selectAnswer(2)"></button>
-      <button class="btn answer-btn" onclick="selectAnswer(3)"></button>
-    </div>
-  `;
-
-  document.getElementById("restart-button").style.display = "none";
-  document.getElementById("next-button").style.display = "none";
-
+  scoreEl.textContent = score;
+  restartButton.style.display = "none";
   showQuestion();
 }
 
-document.addEventListener("DOMContentLoaded", showQuestion);
+document.addEventListener('DOMContentLoaded', showQuestion);
