@@ -4,41 +4,49 @@ let image = new Image();
 let bitSpeed = document.getElementById("bits"),
     kbSpeed = document.getElementById("kbs"),
     mbSpeed = document.getElementById("mbs"),
-    info = document.getElementById("info");
+    info = document.getElementById("info"),
+    progressBar = document.querySelector(".progress"),
+    restartBtn = document.getElementById("restartBtn");
 
 let totalBitSpeed = 0;
 let totalKbSpeed = 0;
 let totalMbSpeed = 0;
-let numTests = 3;
+let numTests = 5;
 let testCompleted = 0;
 let loadingInterval;
-
-let imageApi = "https://source.unsplash.com/500x500?nature"; 
+let countdown = 5;
 
 function startLoadingAnimation() {
-    let dots = "";
+    countdown = 5;
     loadingInterval = setInterval(() => {
-        dots = dots.length < 3 ? dots + "." : "";
-        info.innerHTML = `Testando${dots}`;
-    }, 500);
+        info.innerHTML = `Testando... (${countdown}s)`;
+        countdown--;
+
+        if (countdown < 0) {
+            clearInterval(loadingInterval);
+        }
+    }, 1000);
 }
 
 function stopLoadingAnimation() {
     clearInterval(loadingInterval);
     info.innerHTML = "Teste concluído!";
+    restartBtn.style.display = "inline-block"; 
 }
 
 async function startTest() {
-    info.innerHTML = "Testando...";
-    startLoadingAnimation();
+    info.innerHTML = "Iniciando teste...";
+    restartBtn.style.display = "none";
     testCompleted = 0;
     totalBitSpeed = 0;
     totalKbSpeed = 0;
     totalMbSpeed = 0;
+    progressBar.style.width = "0%";
     runTest();
 }
 
 async function runTest() {
+    startLoadingAnimation();
     try {
         let response = await fetch(imageApi, { method: "HEAD" });
         imageSize = Number(response.headers.get("content-length"));
@@ -51,7 +59,6 @@ async function runTest() {
         image.src = `${imageApi}&t=${new Date().getTime()}`;
     } catch (error) {
         info.innerHTML = "Erro ao carregar imagem.";
-        clearInterval(loadingInterval);
         console.error(error);
     }
 }
@@ -73,6 +80,7 @@ function calculateSpeed() {
     totalMbSpeed += speedInMbs;
 
     testCompleted++;
+    updateProgress();
 
     if (testCompleted === numTests) {
         stopLoadingAnimation();
@@ -81,12 +89,19 @@ function calculateSpeed() {
         let averageSpeedInKbps = (totalKbSpeed / numTests).toFixed(2);
         let averageSpeedInMbps = (totalMbSpeed / numTests).toFixed(2);
 
-        bitSpeed.innerHTML = `${averageSpeedInBps}`;
-        kbSpeed.innerHTML = `${averageSpeedInKbps}`;
-        mbSpeed.innerHTML = `${averageSpeedInMbps}`;
+        bitSpeed.innerHTML = `${averageSpeedInBps} bps`;
+        kbSpeed.innerHTML = `${averageSpeedInKbps} kbps`;
+        mbSpeed.innerHTML = `${averageSpeedInMbps} Mbps`;
     } else {
         runTest();
     }
 }
+
+function updateProgress() {
+    let progressPercent = (testCompleted / numTests) * 100;
+    progressBar.style.width = `${progressPercent}%`;
+}
+
+restartBtn.addEventListener("click", startTest);
 
 window.onload = startTest;
