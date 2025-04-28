@@ -20,7 +20,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 350px;
+    width: 400px;
     padding: 0 2em 1em;
     border-radius: 1em;
     font-size: 1.2em;
@@ -29,12 +29,12 @@ body {
 }
 
 .container img {
-    width: 100%;
+    width: 85%;
 }
 
 p {
     font-weight: 400;
-    color: #747497;
+    color: #303030;
 }
 
 span {
@@ -42,24 +42,13 @@ span {
     color: #090931;
 }
 
-.progress-container {
-    width: 100%;
-    background-color: #eee;
-    border-radius: 20px;
-    margin: 1em 0;
-    height: 10px;
-    overflow: hidden;
-}
-
-.progress {
-    height: 100%;
-    width: 0%;
-    background-color: #054291;
-    transition: width 0.5s ease;
+#info{
+    font-size: 23px;
+    margin-bottom: 20px;
 }
 
 #restartBtn {
-    margin-top: 1em;
+    margin: 1.7em;
     padding: 10px 20px;
     background-color: #054291;
     color: white;

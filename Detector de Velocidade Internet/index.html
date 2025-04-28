@@ -2,27 +2,23 @@
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>Detector de Velocidade Internet</title>
 </head>
 
 <body>
     <div class="container">
-        <img src="speedometer.png" alt="Speedometer">
-        <p id="info"><span>...</span></p>
-        <p id="mbs"><span>Velocidade em Mbs: </span></p>
-        <p id="kbs"><span>Velocidade em Kbs: </span></p>
-        <p id="bits"><span>Velocidade em Bits: </span></p>
-
-        <div class="progress-container">
-            <div class="progress"></div>
-        </div>
-
-        <button id="restartBtn" style="display: none;">Iniciar Novo Teste</button>
+        <img src="speedometer.png" alt="Speedometer" />
+        <p id="info">...</p>
+        <p id="mbs">Velocidade em Mbps: –</p>
+        <p id="kbs">Velocidade em Kbps: –</p>
+        <p id="bits">Velocidade em bps: –</p>
+        <button id="restartBtn" type="button" style="display: none;">
+            Iniciar Novo Teste
+        </button>
     </div>
-
     <script src="main.js"></script>
 </body>
 

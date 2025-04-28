@@ -1,107 +1,39 @@
-let startTime, endTime;
-let imageSize = 0;
-let image = new Image();
-let bitSpeed = document.getElementById("bits"),
-    kbSpeed = document.getElementById("kbs"),
-    mbSpeed = document.getElementById("mbs"),
-    info = document.getElementById("info"),
-    progressBar = document.querySelector(".progress"),
-    restartBtn = document.getElementById("restartBtn");
+document.addEventListener("DOMContentLoaded", () => {
+    const info = document.getElementById("info"),
+        mbSpeed = document.getElementById("mbs"),
+        kbSpeed = document.getElementById("kbs"),
+        bitSpeed = document.getElementById("bits"),
+        restartBtn = document.getElementById("restartBtn");
 
-let totalBitSpeed = 0;
-let totalKbSpeed = 0;
-let totalMbSpeed = 0;
-let numTests = 5;
-let testCompleted = 0;
-let loadingInterval;
-let countdown = 5;
-
-function startLoadingAnimation() {
-    countdown = 5;
-    loadingInterval = setInterval(() => {
-        info.innerHTML = `Testando... (${countdown}s)`;
-        countdown--;
-
-        if (countdown < 0) {
-            clearInterval(loadingInterval);
-        }
-    }, 1000);
-}
-
-function stopLoadingAnimation() {
-    clearInterval(loadingInterval);
-    info.innerHTML = "Teste concluído!";
-    restartBtn.style.display = "inline-block"; 
-}
-
-async function startTest() {
-    info.innerHTML = "Iniciando teste...";
-    restartBtn.style.display = "none";
-    testCompleted = 0;
-    totalBitSpeed = 0;
-    totalKbSpeed = 0;
-    totalMbSpeed = 0;
-    progressBar.style.width = "0%";
-    runTest();
-}
-
-async function runTest() {
-    startLoadingAnimation();
-    try {
-        let response = await fetch(imageApi, { method: "HEAD" });
-        imageSize = Number(response.headers.get("content-length"));
-
-        if (!imageSize) {
-            throw new Error("Erro ao obter o tamanho da imagem.");
+    function showConnection() {
+        const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+        if (!conn) {
+            info.textContent = "API de rede não suportada.";
+            return;
         }
 
-        startTime = new Date().getTime();
-        image.src = `${imageApi}&t=${new Date().getTime()}`;
-    } catch (error) {
-        info.innerHTML = "Erro ao carregar imagem.";
-        console.error(error);
+        info.textContent = "Medindo…";
+        mbSpeed.textContent = "Velocidade em Mbps: –";
+        kbSpeed.textContent = "Velocidade em Kbps: –";
+        bitSpeed.textContent = "Velocidade em bps: –";
+
+        setTimeout(() => {
+            const downlinkMbps = conn.downlink;
+            const downlinkKbps = downlinkMbps * 1024;
+            const downlinkBps = downlinkKbps * 1024;
+
+            info.textContent = "Teste concluído:";
+            mbSpeed.textContent = `Velocidade em Mbps: ${downlinkMbps.toFixed(2)}`;
+            kbSpeed.textContent = `Velocidade em Kbps: ${downlinkKbps.toFixed(2)}`;
+            bitSpeed.textContent = `Velocidade em bps: ${downlinkBps.toFixed(2)}`;
+
+            restartBtn.style.display = "inline-block";
+        }, 300);
     }
-}
 
-image.onload = function () {
-    endTime = new Date().getTime();
-    calculateSpeed();
-};
+    restartBtn.addEventListener("click", () => {
+        showConnection();
+    });
 
-function calculateSpeed() {
-    let timeDuration = (endTime - startTime) / 1000;
-    let loadedBits = imageSize * 8;
-    let speedInBts = loadedBits / timeDuration;
-    let speedInKbs = speedInBts / 1024;
-    let speedInMbs = speedInKbs / 1024;
-
-    totalBitSpeed += speedInBts;
-    totalKbSpeed += speedInKbs;
-    totalMbSpeed += speedInMbs;
-
-    testCompleted++;
-    updateProgress();
-
-    if (testCompleted === numTests) {
-        stopLoadingAnimation();
-        
-        let averageSpeedInBps = (totalBitSpeed / numTests).toFixed(2);
-        let averageSpeedInKbps = (totalKbSpeed / numTests).toFixed(2);
-        let averageSpeedInMbps = (totalMbSpeed / numTests).toFixed(2);
-
-        bitSpeed.innerHTML = `${averageSpeedInBps} bps`;
-        kbSpeed.innerHTML = `${averageSpeedInKbps} kbps`;
-        mbSpeed.innerHTML = `${averageSpeedInMbps} Mbps`;
-    } else {
-        runTest();
-    }
-}
-
-function updateProgress() {
-    let progressPercent = (testCompleted / numTests) * 100;
-    progressBar.style.width = `${progressPercent}%`;
-}
-
-restartBtn.addEventListener("click", startTest);
-
-window.onload = startTest;
+    showConnection();
+});
