@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Conversor de Imagens Avançado</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Conversor de Imagens</h1>
+    <input type="file" id="upload" accept="image/*" multiple />
+    <label for="format">Formato:</label>
+    <select id="format">
+      <option value="jpeg">JPG</option>
+      <option value="png">PNG</option>
+      <option value="webp">WebP</option>
+      <option value="pdf">PDF</option>
+    </select>
+    <!-- <label for="width">Largura:</label>
+    <input type="number" id="width" placeholder="ex: 800" />
+    <label for="height">Altura:</label>
+    <input type="number" id="height" placeholder="ex: 600" /> -->
+    <button onclick="processarImagens()">Converter e Baixar</button>
+    <div id="preview"></div>
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>
