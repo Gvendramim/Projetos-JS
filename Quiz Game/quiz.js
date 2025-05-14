@@ -13,8 +13,44 @@ const questions = [
     question: "Qual é o maior planeta do sistema solar?",
     answers: ["Terra", "Júpiter", "Saturno", "Marte"],
     correct: 1
+  },
+  {
+    question: "Quem pintou a Mona Lisa?",
+    answers: ["Michelangelo", "Leonardo da Vinci", "Van Gogh", "Picasso"],
+    correct: 1
+  },
+  {
+    question: "Qual é o elemento químico representado pelo símbolo O?",
+    answers: ["Ouro", "Oxigênio", "Prata", "Hidrogênio"],
+    correct: 1
+  },
+  {
+    question: "Em que continente está localizado o Brasil?",
+    answers: ["Ásia", "América do Sul", "Europa", "África"],
+    correct: 1
+  },
+  {
+    question: "Quantos segundos há em um minuto?",
+    answers: ["60", "100", "30", "45"],
+    correct: 0
+  },
+  {
+    question: "Qual é o animal mais rápido do mundo?",
+    answers: ["Guepardo", "Leão", "Falcão-peregrino", "Antílope"],
+    correct: 2
+  },
+  {
+    question: "Qual linguagem de programação é usada comumente para criar páginas web?",
+    answers: ["Python", "HTML", "C++", "Java"],
+    correct: 1
+  },
+  {
+    question: "Qual país é conhecido como Terra do Sol Nascente?",
+    answers: ["China", "Japão", "Coreia do Sul", "Tailândia"],
+    correct: 1
   }
 ];
+
 
 // Sons
 const correctSound = new Audio('sounds/correct.mp3');
