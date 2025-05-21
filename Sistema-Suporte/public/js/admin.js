@@ -1,4 +1,4 @@
-let isAdmin = false; // variável para controlar se o usuário é admin
+let isAdmin = false;
 
 // Login
 async function login(email, senha) {
@@ -13,7 +13,7 @@ async function login(email, senha) {
     if (response.ok) {
       const data = await response.json();
       console.log(data.mensagem);
-      isAdmin = data.admin; // guarda se é admin
+      isAdmin = data.admin;
       carregarTickets();
     } else {
       alert('Falha no login: email ou senha inválidos.');
