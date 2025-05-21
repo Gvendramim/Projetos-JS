@@ -32,7 +32,12 @@ if (formTicket) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ usuario, assunto, mensagem })
     });
+
     const data = await res.json();
     alert(data.mensagem);
+
+    if (res.ok) {
+      formTicket.reset();
+    }
   });
 }

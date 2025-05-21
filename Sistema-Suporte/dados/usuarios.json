@@ -3,5 +3,12 @@
     "nome": "Teste",
     "email": "teste@teste.com",
     "senha": "1234"
+  },
+
+  {
+    "nome": "Gabriel",
+    "email": "gabriel@email.com",
+    "senha": "123456",
+    "admin": true
   }
 ]
