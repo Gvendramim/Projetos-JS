@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Área do Cliente - Suporte</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+    <button class="logout" onclick="logout()">Sair</button>
+
+    <h1>Olá, cliente!</h1>
+
+    <div class="ticket-form">
+        <h2>Abrir Novo Ticket</h2>
+        <input type="text" id="subject" placeholder="Assunto" />
+        <textarea id="message" rows="4" placeholder="Descreva o problema..."></textarea>
+        <button onclick="createTicket()">Enviar Ticket</button>
+    </div>
+
+    <div class="ticket-list">
+        <h2>Meus Tickets</h2>
+        <div id="tickets"></div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js"></script>
+    <script type="module" src="js/dashboard.js"></script>
+</body>
+
+</html>

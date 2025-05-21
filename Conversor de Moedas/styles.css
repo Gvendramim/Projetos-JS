@@ -5,7 +5,7 @@
 }
 
 body {
-  font-family: 'Segoe UI', sans-serif;
+  font-family: sans-serif;
   background: linear-gradient(to right, #4facfe, #00f2fe);
   min-height: 100vh;
   display: flex;
