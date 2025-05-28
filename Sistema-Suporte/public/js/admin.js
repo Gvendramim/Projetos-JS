@@ -48,7 +48,7 @@ async function checkLogin() {
 async function carregarTickets() {
   try {
     if (!isAdmin) {
-      document.getElementById('tickets').innerHTML = 'Acesso negado: somente administradores podem ver os tickets.';
+      document.getElementById('tickets').innerHTML = 'Acesso negado! somente administradores podem ver os tickets.';
       return;
     }
 
