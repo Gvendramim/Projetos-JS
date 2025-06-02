@@ -1,10 +1,32 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
 
+:root {
+    --font-family: 'Poppins', sans-serif;
+
+    --color-primary: #141414;
+    --color-secondary: #eb2020;
+    --color-secondary-hover: #c71b1b;
+    --color-accent: #eb4646;
+    --color-white: #fff;
+    --color-black: #000;
+    --color-bg: #696969;
+    --color-border: #ccc;
+
+    --radius-sm: 8px;
+    --radius-md: 12px;
+
+    --shadow-sm: 0 4px 8px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 10px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 8px 20px rgba(0, 0, 0, 0.15);
+
+    --transition: 0.3s ease;
+}
+
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Poppins', sans-serif;
-    background: #696969;
+    font-family: var(--font-family);
+    background: var(--color-bg);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -15,48 +37,46 @@ body {
 h1 {
     font-size: 2.2rem;
     margin-bottom: 2rem;
-    color: #ffffff;
+    color: var(--color-white);
 }
 
 h3 {
     font-size: 1.3rem;
-    display: block;
     text-align: center;
 }
 
 .cards {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
     gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .card {
-    background: #fff;
-    border-radius: 12px;
+    background: var(--color-white);
+    border-radius: var(--radius-md);
     padding: 1.5rem 2rem;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-md);
     text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform var(--transition), box-shadow var(--transition);
     width: 180px;
     cursor: pointer;
     text-decoration: none;
-    color: #141414;
+    color: var(--color-primary);
     font-weight: bold;
-    gap: 90px;
 }
 
 .card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    color: #eb4646;
+    box-shadow: var(--shadow-lg);
+    color: var(--color-accent);
 }
 
 form {
-    background: #fff;
+    background: var(--color-white);
     padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-md);
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
@@ -66,34 +86,36 @@ form {
 input,
 textarea {
     padding: 0.75rem 1rem;
-    border-radius: 8px;
-    border: 1px solid #ccc;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-border);
     font-size: 1rem;
     resize: vertical;
     font-family: inherit;
-    transition: border 0.3s;
+    transition: border var(--transition);
 }
 
 input:focus,
 textarea:focus {
-    border-color: #141414;
+    border-color: var(--color-primary);
     outline: none;
 }
 
-button {
-    background-color: #141414;
-    color: white;
+button,
+#Logout,
+.ticket-card button {
+    background-color: var(--color-primary);
+    color: var(--color-white);
     padding: 0.75rem 1rem;
     border: none;
-    border-radius: 8px;
+    border-radius: var(--radius-sm);
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
+    transition: background-color var(--transition), transform 0.2s;
 }
 
 button:hover {
-    background-color: #eb2020;
+    background-color: var(--color-secondary);
     transform: translateY(-2px);
 }
 
@@ -101,21 +123,38 @@ button:hover {
     position: fixed;
     top: 20px;
     right: 20px;
-    background-color: #eb2020;
-    color: white;
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
+    background-color: var(--color-secondary);
     z-index: 1000;
 }
 
 #Logout:hover {
-    background-color: #141414;
+    background-color: var(--color-primary);
     transform: translateY(-2px);
+}
+
+#tickets {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.ticket-card {
+    background: var(--color-white);
+    padding: 1rem;
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-sm);
+    flex: 1 1 300px;
+    max-width: 300px;
+    box-sizing: border-box;
+}
+
+.ticket-card button {
+    background: var(--color-secondary);
+}
+
+.ticket-card button:hover {
+    background: var(--color-secondary-hover);
 }
 
 @media (max-width: 768px) {
@@ -133,35 +172,4 @@ button:hover {
         width: 80%;
         max-width: 300px;
     }
-}
-
-#tickets {
-  display: flex;
-  flex-wrap: wrap; 
-  gap: 1rem; 
-  justify-content: center;
-}
-
-.ticket-card {
-  background: #fff;
-  padding: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  flex: 1 1 300px;
-  max-width: 300px;
-  box-sizing: border-box;
-}
-
-.ticket-card button {
-  background: #eb2020;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.ticket-card button:hover {
-  background: #c71b1b;
 }
